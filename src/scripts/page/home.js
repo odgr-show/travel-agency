@@ -15,11 +15,17 @@ let world = null,
     _goTo = null,
     _removePass = null,
     _setProgress = null;
-export default async function ({ world: _world, mouse, menu, loader, viewport, scroller }) {
+export default async function ({ world, mouse, menu, loader, viewport, scroller }) {
     // world = _world;
+
+    const fvSlider = world.getObjByEl('.landing-page-top-container');
+    let i = 0;
+    setInterval(() => {
+        fvSlider.goTo(++i, 3);
+    }, 5000);
     // // .panel__mediaのマウス情報（uMouse、uHover）を監視対象へ
-    // const planeEls = INode.qsAll('.panel__media');
-    // planeEls.forEach((planeEl) => world.addRaycastingTarget(planeEl));
+    const planeEls = INode.qsAll('[data-webgl="plane-sphere"]');
+    planeEls.forEach((planeEl) => world.addRaycastingTarget(planeEl));
     // // ローディング用のパスを初期化
     // const { removePass, setProgress } = initDistortionPass(world);
     // _setProgress = setProgress;
